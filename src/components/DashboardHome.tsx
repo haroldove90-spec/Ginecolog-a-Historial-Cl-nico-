@@ -4,8 +4,8 @@ import { Users, Calendar, AlertCircle } from 'lucide-react';
 export function DashboardHome() {
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold text-slate-900 tracking-tight">Resumen Clínico</h1>
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+        <h1 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">Resumen Clínico</h1>
         <p className="text-sm text-slate-500">Hoy: {new Date().toLocaleDateString('es-ES', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</p>
       </div>
 

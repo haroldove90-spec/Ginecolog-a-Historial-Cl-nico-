@@ -9,6 +9,7 @@ import { Patient } from './types';
 export default function App() {
   const [activeModule, setActiveModule] = useState('dashboard');
   const [selectedPatient, setSelectedPatient] = useState<Patient | null>(null);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const handleSearch = (query: string) => {
     // Mock search logic
@@ -32,6 +33,7 @@ export default function App() {
 
   const handleNavigate = (module: string) => {
     setActiveModule(module);
+    setIsMobileMenuOpen(false);
     if (module !== 'patients') {
       setSelectedPatient(null);
     }
@@ -78,11 +80,26 @@ export default function App() {
   };
 
   return (
-    <div className="flex h-screen bg-slate-50 text-slate-900 font-sans">
-      <Sidebar activeModule={activeModule} onNavigate={handleNavigate} />
-      <div className="flex-1 flex flex-col overflow-hidden">
-        <Header onSearch={handleSearch} />
-        <main className="flex-1 overflow-y-auto p-6">
+    <div className="flex h-screen bg-slate-50 text-slate-900 font-sans overflow-hidden">
+      {/* Mobile overlay */}
+      {isMobileMenuOpen && (
+        <div 
+          className="fixed inset-0 bg-slate-900/50 z-40 lg:hidden"
+          onClick={() => setIsMobileMenuOpen(false)}
+        />
+      )}
+      
+      <Sidebar 
+        activeModule={activeModule} 
+        onNavigate={handleNavigate} 
+        isOpen={isMobileMenuOpen}
+      />
+      <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
+        <Header 
+          onSearch={handleSearch} 
+          onMenuToggle={() => setIsMobileMenuOpen(true)} 
+        />
+        <main className="flex-1 overflow-y-auto p-4 sm:p-6">
           {renderContent()}
         </main>
       </div>

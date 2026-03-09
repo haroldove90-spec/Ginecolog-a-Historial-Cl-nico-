@@ -126,25 +126,25 @@ export function PatientView({ patient, onBack, initialTab = 'obstetrics' }: Pati
       )}
 
       {/* Header */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div className="flex items-center gap-4">
-          <button onClick={onBack} className="p-2 hover:bg-slate-200 rounded-full transition-colors">
+          <button onClick={onBack} className="p-2 hover:bg-slate-200 rounded-full transition-colors shrink-0">
             <ArrowLeft className="w-5 h-5 text-slate-600" />
           </button>
-          <div>
-            <h1 className="text-2xl font-bold text-slate-900 tracking-tight">
+          <div className="min-w-0">
+            <h1 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight truncate">
               {patient.lastName}, {patient.firstName}
             </h1>
-            <p className="text-sm text-slate-500">
+            <p className="text-sm text-slate-500 truncate">
               DNI: {patient.idNumber} | Edad: {Math.floor((new Date().getTime() - new Date(patient.dob).getTime()) / 31557600000)} años
             </p>
           </div>
         </div>
-        <div className="flex gap-3">
+        <div className="flex gap-3 w-full sm:w-auto">
           {activeTab === 'obstetrics' && (
             <button
               onClick={() => setIsObsModalOpen(true)}
-              className="px-4 py-2 bg-indigo-600 text-white rounded-lg text-sm font-medium hover:bg-indigo-700 transition-colors flex items-center gap-2 shadow-sm"
+              className="w-full sm:w-auto px-4 py-2 bg-indigo-600 text-white rounded-lg text-sm font-medium hover:bg-indigo-700 transition-colors flex items-center justify-center gap-2 shadow-sm"
             >
               <Plus className="w-4 h-4" />
               Nuevo Control
@@ -153,7 +153,7 @@ export function PatientView({ patient, onBack, initialTab = 'obstetrics' }: Pati
           {activeTab === 'gynecology' && (
             <button
               onClick={() => setIsGynModalOpen(true)}
-              className="px-4 py-2 bg-indigo-600 text-white rounded-lg text-sm font-medium hover:bg-indigo-700 transition-colors flex items-center gap-2 shadow-sm"
+              className="w-full sm:w-auto px-4 py-2 bg-indigo-600 text-white rounded-lg text-sm font-medium hover:bg-indigo-700 transition-colors flex items-center justify-center gap-2 shadow-sm"
             >
               <Plus className="w-4 h-4" />
               Nueva Consulta
@@ -162,7 +162,7 @@ export function PatientView({ patient, onBack, initialTab = 'obstetrics' }: Pati
           {activeTab === 'documents' && (
             <button
               onClick={() => setIsDocModalOpen(true)}
-              className="px-4 py-2 bg-indigo-600 text-white rounded-lg text-sm font-medium hover:bg-indigo-700 transition-colors flex items-center gap-2 shadow-sm"
+              className="w-full sm:w-auto px-4 py-2 bg-indigo-600 text-white rounded-lg text-sm font-medium hover:bg-indigo-700 transition-colors flex items-center justify-center gap-2 shadow-sm"
             >
               <Upload className="w-4 h-4" />
               Subir Documento
@@ -183,8 +183,8 @@ export function PatientView({ patient, onBack, initialTab = 'obstetrics' }: Pati
       )}
 
       {/* Tabs */}
-      <div className="border-b border-slate-200">
-        <nav className="-mb-px flex space-x-8">
+      <div className="border-b border-slate-200 overflow-x-auto hide-scrollbar">
+        <nav className="-mb-px flex space-x-6 sm:space-x-8 min-w-max">
           <button
             onClick={() => setActiveTab('obstetrics')}
             className={`whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm ${

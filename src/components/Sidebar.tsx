@@ -1,15 +1,20 @@
 import React from 'react';
-import { Users, Baby, Activity, FolderOpen, Settings, LayoutDashboard } from 'lucide-react';
+import { Users, Baby, Activity, FolderOpen, Settings, LayoutDashboard, X } from 'lucide-react';
 
 interface SidebarProps {
   activeModule: string;
   onNavigate: (module: string) => void;
+  isOpen: boolean;
 }
 
-export function Sidebar({ activeModule, onNavigate }: SidebarProps) {
+export function Sidebar({ activeModule, onNavigate, isOpen }: SidebarProps) {
   return (
-    <aside className="w-64 bg-white border-r border-slate-200 flex flex-col">
-      <div className="h-16 flex items-center px-6 border-b border-slate-200">
+    <aside 
+      className={`fixed lg:static inset-y-0 left-0 z-50 w-64 bg-white border-r border-slate-200 flex flex-col transform transition-transform duration-300 ease-in-out ${
+        isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
+      }`}
+    >
+      <div className="h-16 flex items-center justify-between px-6 border-b border-slate-200">
         <div className="flex items-center gap-2 text-indigo-600">
           <Activity className="w-6 h-6" />
           <span className="text-xl font-bold tracking-tight">GynObs</span>

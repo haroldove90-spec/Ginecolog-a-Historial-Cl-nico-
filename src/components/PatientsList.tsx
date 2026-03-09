@@ -102,7 +102,7 @@ export function PatientsList({ onSelectPatient, hideHeader = false }: PatientsLi
         </div>
 
         <div className="overflow-x-auto">
-          <table className="w-full text-left text-sm text-slate-600">
+          <table className="w-full text-left text-sm text-slate-600 min-w-[800px]">
             <thead className="text-xs text-slate-500 uppercase bg-slate-50 border-b border-slate-200">
               <tr>
                 <th className="px-6 py-4 font-semibold">Paciente</th>
