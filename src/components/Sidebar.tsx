@@ -10,12 +10,12 @@ interface SidebarProps {
 export function Sidebar({ activeModule, onNavigate, isOpen }: SidebarProps) {
   return (
     <aside 
-      className={`fixed lg:static inset-y-0 left-0 z-50 w-64 bg-white border-r border-slate-200 flex flex-col transform transition-transform duration-300 ease-in-out ${
+      className={`fixed lg:static inset-y-0 left-0 z-50 w-64 bg-indigo-900 flex flex-col transform transition-transform duration-300 ease-in-out shadow-xl ${
         isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
       }`}
     >
-      <div className="h-16 flex items-center justify-between px-6 border-b border-slate-200">
-        <div className="flex items-center gap-2 text-indigo-600">
+      <div className="h-16 flex items-center justify-between px-6 border-b border-indigo-800/50">
+        <div className="flex items-center gap-2 text-white">
           <Activity className="w-6 h-6" />
           <span className="text-xl font-bold tracking-tight">GynObs</span>
         </div>
@@ -27,7 +27,7 @@ export function Sidebar({ activeModule, onNavigate, isOpen }: SidebarProps) {
         <NavItem icon={<Activity size={20} />} label="Ginecología" active={activeModule === 'gynecology'} onClick={() => onNavigate('gynecology')} />
         <NavItem icon={<FolderOpen size={20} />} label="Archivo Documental" active={activeModule === 'documents'} onClick={() => onNavigate('documents')} />
       </nav>
-      <div className="p-4 border-t border-slate-200">
+      <div className="p-4 border-t border-indigo-800/50">
         <NavItem icon={<Settings size={20} />} label="Configuración" active={activeModule === 'settings'} onClick={() => onNavigate('settings')} />
       </div>
     </aside>
@@ -40,8 +40,8 @@ function NavItem({ icon, label, active = false, onClick }: { icon: React.ReactNo
       onClick={onClick}
       className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
         active
-          ? 'bg-indigo-50 text-indigo-700'
-          : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
+          ? 'bg-indigo-800 text-white shadow-sm'
+          : 'text-indigo-100 hover:bg-indigo-800/50 hover:text-white'
       }`}
     >
       {icon}
